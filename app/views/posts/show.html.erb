@@ -3,7 +3,7 @@
 <p><%= @post.content %></p>
 <p><%= @post.likes %></p>
 
-<%= button_to "like", post_path, { method: :patch, form: {like: 1} }  %>
+<%= button_to "like", liked_post_path, { params: {like: true } }  %>
 <hr>
 <p>Post by: <%= link_to @post.blogger.name, blogger_path(@post.blogger) %></p>
 <p>Destination:  <%= link_to @post.destination.name, blogger_path(@post.destination) %></p>

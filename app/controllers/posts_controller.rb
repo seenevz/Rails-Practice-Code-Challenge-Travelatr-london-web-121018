@@ -29,21 +29,32 @@ class PostsController < ApplicationController
     end
 
     def update
-        byebug
-        if @post.update(post_params)
+        
+        
+        if params[:like]
+            @post.likes += 1 
+            @post.update(likes: @post.likes)
+            
             redirect_to post_path(@post)
-        else
-            render :edit
+        end
+        if post_params
+            if @post.update(post_params)
+                redirect_to post_path(@post)
+            else
+                render :edit
+            end
         end
     end
 
     private
 
     def post_params
+        if params[:post]
         params.require(:post).permit(:title, :content, :likes, :blogger_id, :Destination_id)
+        end
     end
 
-    def find_post
+    def find_post        
         @post = Post.find(params[:id])
     end
 
