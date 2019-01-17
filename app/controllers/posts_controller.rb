@@ -28,8 +28,7 @@ class PostsController < ApplicationController
     def edit        
     end
 
-    def update
-        
+    def update    
         
         if params[:like]
             @post.likes += 1 
@@ -37,6 +36,7 @@ class PostsController < ApplicationController
             
             redirect_to post_path(@post)
         end
+        
         if post_params
             if @post.update(post_params)
                 redirect_to post_path(@post)
